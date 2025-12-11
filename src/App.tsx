@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import AudioRecorder from './AudioRecorder'
-import { FaPaperPlane, FaUser, FaMicrophone, FaRegClock, FaCheckCircle, FaSpinner } from 'react-icons/fa'; // Importamos iconos modernos
+import { FaPaperPlane, FaUser, FaRegClock, FaCheckCircle, FaSpinner } from 'react-icons/fa'; // Importamos iconos modernos
 
 const API_BASE_URL = 'http://localhost:8000';
 const MAX_TTS_CHARS = 150;

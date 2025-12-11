@@ -1,6 +1,6 @@
 // frontend/src/F1CommBox.tsx
-
-import React, { FC, useEffect, useState } from 'react';
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
 import './OverlayPlayer.css';
 
 // ==========================================================
