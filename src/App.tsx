@@ -5,7 +5,7 @@ import './App.css';
 import AudioRecorder from './AudioRecorder'
 import { FaPaperPlane, FaUser, FaRegClock, FaCheckCircle, FaSpinner } from 'react-icons/fa'; // Importamos iconos modernos
 
-const API_BASE_URL = 'https://bg408rvv-8000.use2.devtunnels.ms/';
+const API_BASE_URL = 'http://localhost:8000';
 const MAX_TTS_CHARS = 150;
 
 function App() {
