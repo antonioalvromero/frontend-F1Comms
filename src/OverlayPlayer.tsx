@@ -5,7 +5,7 @@ import './OverlayPlayer.css';
 import F1CommBox from './F1CommBox';
 // Ya NO usamos useParams
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'https://bg408rvv-8000.use2.devtunnels.ms/';
 const POLLING_INTERVAL = 3000; // Consultar el backend cada 3 segundos
 
 
