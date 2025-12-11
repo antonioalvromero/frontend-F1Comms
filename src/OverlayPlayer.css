@@ -1,0 +1,168 @@
+/* frontend/src/OverlayPlayer.css */
+
+/* --- Contenedor Base --- */
+
+.hidden-overlay-container {
+    /* Mantiene el tamaño mínimo para OBS */
+    position: fixed;
+    width: 1px;
+    height: 1px;
+}
+
+.radio-overlay-container {
+    /* POSICIÓN FIJA (DÓNDE TERMINA LA ANIMACIÓN) */
+    position: fixed;
+    top: 50px; 
+    right: 200px; /* <<< MARGEN: 200px del borde derecho (más a la izquierda) */
+    width: 350px; 
+    background-color: #000000; 
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    overflow: hidden; 
+    
+    /* POSICIÓN INICIAL (FUERA DE PANTALLA) */
+    /* El 100% de su ancho + el margen de 200px */
+    transform: translateX(calc(100% + 200px)); 
+}
+
+/* --- Header --- */
+
+.radio-header {
+    display: flex;
+    /* AJUSTE: Distribuimos el espacio entre el grupo de texto y el logo */
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #000000a6; 
+    /* CLAVE 1: Color transparente, se aplicará vía style en React */
+    border-bottom: 2px solid transparent; 
+}
+
+/* NUEVO GRUPO: Contiene el nombre y la palabra 'RADIO' apilados */
+.radio-text-group {
+    display: flex;
+    flex-direction: column; /* Apila el nombre y la etiqueta verticalmente */
+    align-items: flex-end; /* Alinea el texto a la derecha */
+    flex-grow: 1; /* Permite que este grupo crezca y empuje el logo */
+    line-height: 1; /* Reduce el espacio vertical entre líneas */
+    margin-right: 10px; /* Separación del texto con el logo */
+}
+
+.radio-user-name {
+    font-size: 1.4em;
+    font-weight: 700;
+    /* CLAVE 2: Quitamos el color fijo. Se aplicará vía style en React. */
+    /* color: white; */ 
+    margin-right: 0; 
+    text-transform: uppercase;
+    word-break: break-word; 
+    line-height: 1.1; 
+}
+
+.radio-tag {
+    font-size: 1.1em; 
+    font-weight: 700;
+    color: white; /* 'RADIO' se mantiene blanco */
+    margin-right: 0; 
+    margin-top: 2px; 
+    opacity: 0.8;
+    text-align: right;
+}
+
+.radio-logo { 
+    height: 100px; 
+    flex-shrink: 0; 
+}
+
+/* --- Visualizador de Barras --- */
+
+.radio-visualizer-area {
+    padding: 15px;
+    background-color: #383838;
+}
+
+.radio-visualizer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    height: 40px;
+}
+
+.audio-bar {
+    width: 1%; 
+    /* CLAVE 3: Quitamos el color fijo. Se aplicará vía style en React. */
+    background-color: transparent; 
+    transition: height 0.1s ease;
+    min-height: 2px;
+}
+
+.audio-bar.playing {
+    animation-name: bar-jump;
+    animation-duration: 0.5s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+/* Simulación de movimiento dinámico */
+.audio-bar.playing:nth-child(3n + 1) { animation-delay: 0.1s; }
+.audio-bar.playing:nth-child(3n + 2) { animation-delay: 0.3s; }
+.audio-bar.playing:nth-child(3n + 3) { animation-delay: 0.2s; }
+
+@keyframes bar-jump {
+    0%, 100% { height: 20%; }
+    50% { height: 100%; }
+    25% { height: 50%; }
+    75% { height: 70%; }
+}
+
+/* --- ANIMACIONES DE ENTRADA/SALIDA F1 (CONTROLADAS POR F1CommBox.tsx) --- */
+
+/* 1. ANIMACIÓN DE ENTRADA (slide-in: Rápida y con sesgo) */
+.radio-overlay-container.slide-in {
+    animation: slide-in 0.3s cubic-bezier(0.2, 0.7, 0.1, 1) forwards; 
+}
+
+@keyframes slide-in {
+    from { 
+        /* Comienza fuera del borde + 200px de margen */
+        transform: translateX(calc(100% + 200px)) skewX(10deg); 
+    }
+    to { 
+        /* Termina en la posición anclada por right: 200px */
+        transform: translateX(0) skewX(0); 
+    }
+}
+
+/* 2. ANIMACIÓN DE SALIDA (slide-out: Rápida y agresiva) */
+.radio-overlay-container.slide-out {
+    animation: slide-out 0.4s cubic-bezier(0.8, 0.1, 1, 0.2) forwards; 
+}
+
+@keyframes slide-out {
+    from { 
+        transform: translateX(0) skewX(0); 
+    }
+    to { 
+        /* Se va fuera del borde + 200px de margen */
+        transform: translateX(calc(100% + 200px)) skewX(10deg); 
+    }
+}
+
+/* --- TRANSCRIPT AREA --- */
+
+.radio-transcript-area {
+    padding: 15px 15px 20px 15px; 
+    background-color: #111111; 
+    /* CLAVE 4: Color transparente, se aplicará vía style en React */
+    border-top: 2px solid transparent; 
+}
+
+.radio-transcript {
+    color: white;
+    font-size: 1.05em;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+    line-height: 1.35;
+    font-family: sans-serif; 
+}

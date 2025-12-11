@@ -1,0 +1,114 @@
+/* frontend/src/index.css */
+
+/* --- Configuración Global y de Transparencia --- */
+:root {
+  /* CRUCIAL para el overlay: asegura que el cuerpo no tenga color */
+  background-color: transparent; 
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  /* Asegura que el cuerpo de la página sea totalmente transparente */
+  background-color: transparent; 
+  /* Ajusta la altura si es necesario para el overlay */
+  min-height: 100vh;
+}
+
+/* --- Estilos del Overlay (OverlayPlayer.tsx) --- */
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Crucial para que puedas hacer click a través del overlay en OBS */
+  display: flex;
+  justify-content: flex-start; /* Coloca el box a la izquierda */
+  align-items: flex-end; /* Coloca el box abajo */
+  padding: 20px;
+  /* Animación de entrada/salida */
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.overlay-container.hidden {
+  opacity: 0;
+}
+
+.f1-comm-box {
+  background: rgba(0, 0, 0, 0.85); /* Fondo oscuro semitransparente */
+  color: white;
+  padding: 10px 20px;
+  border-left: 5px solid #E10600; /* Color Rojo F1 */
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.5s ease-out;
+}
+
+.f1-comm-name {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #E10600; /* Rojo F1 para el nombre */
+}
+
+.f1-comm-indicator {
+  font-size: 0.9em;
+  opacity: 0.8;
+  margin-top: 3px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* --- Estilos del Formulario (App.tsx) --- */
+.app-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white; /* El formulario debe tener fondo visible para el usuario */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.result-box {
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px solid #E10600;
+    background-color: #ffeaea;
+    border-radius: 4px;
+}
+.url-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eee;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+.copy-text {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+.copy-button {
+    background-color: #E10600;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}

@@ -1,0 +1,437 @@
+/* frontend/src/App.css - Estilo Moderno F1 con Fondo Dinámico */
+
+/* --- Base & Contenedor General --- */
+/* --- Base & Contenedor General --- */
+:root {
+    --color-primary: #0072CE; /* Azul NASA: Acentos, Botones, Títulos */
+    --color-secondary: #4A4A4A; /* Gris de División/Sombra */
+    --color-background: #0C0C0C; /* Negro Profundo para el fondo */
+    --color-text-light: #FFFFFF; /* Blanco Puro para el texto */
+    --color-warning: #E3001B; /* Rojo NASA: Advertencias, Grabación */
+}
+
+/* El resto de tu App.css (botones, inputs, etc.) usará automáticamente estas nuevas variables. */
+
+/* Ajuste adicional para el botón primario que tenía el color del fondo */
+.primary-btn {
+    /* Mantiene el color base del botón primario */
+    background-color: var(--color-primary); 
+    /* Ajusta el color del texto para que contraste con el azul */
+    color: var(--color-text-light); 
+}
+
+.primary-btn:hover:not([disabled]) {
+    /* Un azul más claro para el efecto hover */
+    background-color: #0099FF; 
+    transform: translateY(-2px);
+}
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0; 
+    text-align: center;
+}
+
+.f1-theme {
+    min-height: 100vh;
+    /* Color de fondo base de la aplicación de control */
+    background-color: var(--color-background);
+    color: var(--color-text-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    
+    /* NECESARIO: Establece el contexto para el pseudo-elemento */
+    position: relative; 
+    overflow: hidden; 
+}
+
+/* 🎨 EFECTO DE FONDO ANIMADO DEGRADADO (APLICADO SOLO A .f1-theme) */
+.f1-theme::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at 20% 30%, #5b21b6aa, transparent 60%),
+        radial-gradient(circle at 80% 70%, #0ea5e9aa, transparent 60%),
+        radial-gradient(circle at 50% 50%, #9333ea88, transparent 60%);
+
+    background-size: 200% 200%;
+    animation: moveBg 14s ease-in-out infinite;
+
+    filter: blur(120px);
+    z-index: -1; 
+}
+
+/* Animación del fondo */
+@keyframes moveBg {
+    0% {
+        background-position: 20% 20%;
+    }
+    50% {
+        background-position: 80% 70%;
+    }
+    100% {
+        background-position: 20% 20%;
+    }
+}
+
+
+.app-container {
+    padding: 2rem;
+    text-align: left;
+    position: relative; /* Asegura que el contenido quede encima del ::before */
+    z-index: 1; 
+}
+
+/* --- Header y Títulos --- */
+.header-bar {
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--color-primary);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.header-bar h1 {
+    font-size: 2.5em;
+    font-weight: 900;
+    color: var(--color-primary);
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 1em;
+    color: var(--color-secondary);
+    margin-top: 5px;
+}
+
+h2 {
+    color: var(--color-text-light);
+    border-bottom: 2px solid var(--color-secondary);
+    padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+h2 svg {
+    margin-right: 10px;
+    color: var(--color-primary);
+}
+
+/* --- Secciones y Contenido --- */
+.content-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.section-card {
+    background-color: var(--color-background);
+    padding: 30px;
+    border: 1px solid var(--color-secondary);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+}
+
+.f1-divider {
+    grid-column: 1 / span 2;
+    border: none;
+    border-top: 1px dashed var(--color-secondary);
+    margin: 30px 0;
+}
+
+.description {
+    color: #aaaaaa;
+    margin-top: -10px;
+    font-style: italic;
+    margin-bottom: 25px;
+}
+
+/* --- Inputs y Formularios --- */
+.input-group {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: var(--color-text-light);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.f1-input, .f1-textarea {
+    padding: 12px;
+    background-color: #222222;
+    border: 1px solid #444444;
+    color: var(--color-text-light);
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    resize: none;
+}
+
+.f1-input:focus, .f1-textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(255, 136, 0, 0.3);
+    outline: none;
+}
+
+/* Contador de caracteres */
+.char-counter {
+    text-align: right;
+    font-size: 0.8em;
+    color: #999999;
+    margin-top: 5px;
+}
+
+.char-counter.warning {
+    color: var(--color-warning);
+    font-weight: bold;
+}
+
+/* --- Botones --- */
+.f1-button {
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s, opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.primary-btn {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+}
+
+.primary-btn:hover:not([disabled]) {
+    background-color: #ffaa33;
+    transform: translateY(-2px);
+}
+
+.f1-button[disabled] {
+    background-color: #555555;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* --- Notificación y Animaciones --- */
+
+.notification-box {
+    grid-column: 1 / span 2;
+    background-color: #1f351f; /* Verde oscuro */
+    color: #c9ffc9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+.icon-success {
+    color: var(--color-primary); 
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+/* Animación de carga */
+.spinner-icon {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- ESTILOS ESPECÍFICOS DE AUDIO RECORDER --- */
+.audio-recorder-section {
+    width: 100%;
+}
+.recording-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+.recording-timer {
+    display: flex;
+    align-items: center;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--color-warning); 
+    margin-bottom: 20px;
+}
+.timer-icon {
+    margin-right: 15px;
+    font-size: 0.8em;
+}
+.pulse-animation {
+    animation: pulse 1s infinite alternate;
+}
+@keyframes pulse {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+}
+.recording-active-btn {
+    background-color: var(--color-warning); 
+    color: var(--color-background);
+}
+.recording-active-btn:hover:not([disabled]) {
+    background-color: #ff6644;
+}
+.preview-audio {
+    width: 100%;
+    margin: 20px 0;
+    filter: invert(1) hue-rotate(180deg) brightness(0.8); 
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+.upload-and-discard-group {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+}
+.discard-button {
+    flex-grow: 1;
+    background-color: #333333;
+    color: #cccccc;
+    border: 1px solid #666666;
+    font-weight: normal;
+}
+.discard-button:hover:not([disabled]) {
+    background-color: #444444;
+}
+
+
+/* --- ESTILOS ESPECÍFICOS DE AUDIO RECORDER --- */
+
+.audio-recorder-section {
+    width: 100%;
+}
+.recording-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Estilo Base de Botón para Grabación/Carga (Hereda de .f1-button si es posible) */
+.record-button, .upload-button {
+    /* Base compartida con .f1-button para consistencia */
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s, opacity 0.3s;
+    width: 100%; 
+    text-transform: uppercase;
+}
+
+/* Estilo para el botón de Iniciar Grabación (Color Primario F1: Naranja) */
+.record-button {
+    background-color: var(--color-primary); /* Naranja */
+    color: var(--color-background); /* Texto oscuro */
+}
+.record-button:hover:not([disabled]) {
+    background-color: #ffaa33;
+    transform: translateY(-2px);
+}
+
+/* Estilo para el botón de Subir Audio (Color Secundario o de Acción) */
+.upload-button {
+    background-color: #333333; /* Gris más oscuro */
+    color: var(--color-text-light);
+}
+.upload-button:hover:not([disabled]) {
+    background-color: #444444;
+}
+
+
+/* Estilo para el botón cuando ESTÁ grabando (Rojo de Advertencia F1) */
+.record-button.recording {
+    background-color: var(--color-warning); /* Rojo F1/Advertencia */
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.7); /* Sombra para destacar */
+    animation: pulse-record 1.5s infinite alternate; /* Animación de pulso */
+}
+.record-button.recording:hover {
+    background-color: var(--color-warning); 
+    transform: none; /* No queremos que se mueva si está grabando */
+}
+
+
+/* Indicador de Tiempo y Animación de Pulso para el Timer */
+.recording-timer {
+    display: flex;
+    align-items: center;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--color-warning); /* Rojo */
+    margin-bottom: 20px;
+}
+.timer-icon {
+    margin-right: 15px;
+    font-size: 0.8em;
+}
+
+@keyframes pulse-record {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+}
+
+
+/* Estilos para el reproductor de audio y otros elementos */
+.preview-audio {
+    width: 100%;
+    margin: 20px 0;
+    filter: invert(1) hue-rotate(180deg) brightness(0.8); /* Hace el reproductor oscuro/visible */
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.upload-and-discard-group {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+}
+.discard-button {
+    flex-grow: 1;
+    background-color: #333333;
+    color: #cccccc;
+    border: 1px solid #666666;
+    font-weight: normal;
+}
+.discard-button:hover:not([disabled]) {
+    background-color: #444444;
+}
