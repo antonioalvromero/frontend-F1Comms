@@ -23,6 +23,19 @@ const OverlayPlayer: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'playing' | 'loading'>('idle');
   const [currentUsername, setCurrentUsername] = useState<string>('');
   const [currentTranscript, setCurrentTranscript] = useState<string>('');
+  const [currentAudioId, setCurrentAudioId] = useState<string | null>(null);
+
+  // Función para eliminar el audio del servidor
+  const deleteAudio = async (audioId: string) => {
+    try {
+      await fetch(`${API_BASE_URL}/audio/${audioId}`, {
+        method: 'DELETE',
+      });
+      console.log("Audio eliminado del servidor:", audioId);
+    } catch (error) {
+      console.error("Error al eliminar audio:", error);
+    }
+  };
   
   // Usamos useCallback para que esta función no se redefina y cause bucles
   const fetchNextComm = useCallback(async () => {
@@ -39,6 +52,7 @@ const OverlayPlayer: React.FC = () => {
         setStatus('loading');
         setCurrentUsername(data.username || 'Equipo');
         setCurrentTranscript(data.transcript || 'Mensaje de Radio COMM');
+        setCurrentAudioId(data.audio_id || null);
         audioRef.current.src = `${API_BASE_URL}${data.audio_url}`;
         
         // Intentar iniciar la reproducción
@@ -68,6 +82,11 @@ const OverlayPlayer: React.FC = () => {
       // Configurar el evento onended para limpiar y buscar el siguiente audio
       audio.onended = () => {
         console.log("Audio finalizado. Buscando el siguiente...");
+        // Eliminar el audio del servidor
+        if (currentAudioId) {
+          deleteAudio(currentAudioId);
+          setCurrentAudioId(null);
+        }
         setStatus('idle'); // Al estar 'idle', se dispara el polling
         fetchNextComm(); 
       };

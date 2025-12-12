@@ -97,6 +97,62 @@ body {
     border-radius: 4px;
     margin-top: 5px;
 }
+
+/* ========================================
+   RESPONSIVE DESIGN - INDEX.CSS
+   ======================================== */
+
+@media screen and (max-width: 768px) {
+    .overlay-container {
+        padding: 10px;
+    }
+
+    .f1-comm-box {
+        padding: 8px 15px;
+        max-width: calc(100vw - 40px);
+    }
+
+    .f1-comm-name {
+        font-size: 1em;
+    }
+
+    .f1-comm-indicator {
+        font-size: 0.8em;
+    }
+
+    .app-container {
+        padding: 15px;
+        margin: 10px;
+        border-radius: 6px;
+    }
+
+    .result-box {
+        padding: 12px;
+        margin-top: 20px;
+    }
+
+    .url-display {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .overlay-container {
+        padding: 5px;
+    }
+
+    .f1-comm-box {
+        padding: 6px 12px;
+    }
+
+    .app-container {
+        padding: 10px;
+        margin: 5px;
+    }
+}
+
 .copy-text {
     flex-grow: 1;
     overflow: hidden;
@@ -104,6 +160,7 @@ body {
     white-space: nowrap;
     margin-right: 10px;
 }
+
 .copy-button {
     background-color: #E10600;
     color: white;

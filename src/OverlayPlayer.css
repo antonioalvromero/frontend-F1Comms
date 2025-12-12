@@ -148,6 +148,112 @@
     }
 }
 
+/* ========================================
+   RESPONSIVE DESIGN - OVERLAY PLAYER
+   ======================================== */
+
+@media screen and (max-width: 768px) {
+    .radio-overlay-container {
+        width: 280px;
+        right: 20px;
+        top: 20px;
+        transform: translateX(calc(100% + 20px));
+    }
+
+    .radio-header {
+        padding: 8px 12px;
+    }
+
+    .radio-user-name {
+        font-size: 1.1em;
+    }
+
+    .radio-tag {
+        font-size: 0.9em;
+    }
+
+    .radio-logo {
+        height: 70px;
+    }
+
+    .radio-visualizer-area {
+        padding: 10px;
+    }
+
+    .radio-visualizer {
+        height: 30px;
+    }
+
+    @keyframes slide-in {
+        from { 
+            transform: translateX(calc(100% + 20px)) skewX(10deg); 
+        }
+        to { 
+            transform: translateX(0) skewX(0); 
+        }
+    }
+
+    @keyframes slide-out {
+        from { 
+            transform: translateX(0) skewX(0); 
+        }
+        to { 
+            transform: translateX(calc(100% + 20px)) skewX(10deg); 
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .radio-overlay-container {
+        width: 220px;
+        right: 10px;
+        top: 10px;
+        transform: translateX(calc(100% + 10px));
+    }
+
+    .radio-header {
+        padding: 6px 10px;
+    }
+
+    .radio-user-name {
+        font-size: 0.95em;
+    }
+
+    .radio-tag {
+        font-size: 0.8em;
+    }
+
+    .radio-logo {
+        height: 50px;
+    }
+
+    .radio-visualizer-area {
+        padding: 8px;
+    }
+
+    .radio-visualizer {
+        height: 25px;
+    }
+
+    @keyframes slide-in {
+        from { 
+            transform: translateX(calc(100% + 10px)) skewX(10deg); 
+        }
+        to { 
+            transform: translateX(0) skewX(0); 
+        }
+    }
+
+    @keyframes slide-out {
+        from { 
+            transform: translateX(0) skewX(0); 
+        }
+        to { 
+            transform: translateX(calc(100% + 10px)) skewX(10deg); 
+        }
+    }
+}
+
 /* --- TRANSCRIPT AREA --- */
 
 .radio-transcript-area {
