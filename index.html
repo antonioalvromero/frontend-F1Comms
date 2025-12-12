@@ -1,31 +1,41 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/frontend-F1Comms/vite.svg" />
-    <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self' http: https: ws: wss: data: blob:;
-        style-src 'self' 'unsafe-inline' https:;
-        font-src 'self' data:;
-        img-src 'self' data: https:;
-        script-src 'self' 'unsafe-inline' https:;
-    ">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>F1 Comms Overlay</title>
-    <script>
-        // Obtiene la ruta de destino (ej: /frontend-F1Comms/overlay)
-        var path = window.location.pathname;
-        
-        // Define la ruta base del repositorio. Debe coincidir con tu basename de React Router.
-        var base_path = '/frontend-F1Comms/'; 
-        
-        // Redirige al index.html, pero conserva la ruta en el hash
-        window.location.replace(base_path + '#' + path.substring(base_path.length));
-    </script>
-    <script type="module" crossorigin src="/frontend-F1Comms/assets/index-DAP7xKOQ.js"></script>
-    <link rel="stylesheet" crossorigin href="/frontend-F1Comms/assets/index-BHAeH3jD.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/frontend-F1Comms/vite.svg" />
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self' http: https: ws: wss: data: blob:;
+    
+    # PERMITE FUENTES INCRUSTADAS (data:) Y DE GOOGLE (https://fonts.gstatic.com)
+    font-src 'self' data: https://fonts.gstatic.com;
+    
+    # PERMITE ESTILOS EN LÍNEA ('unsafe-inline') Y GOOGLE FONTS (https://fonts.googleapis.com)
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    
+    # PERMITE SCRIPTS INYECTADOS POR VITE ('unsafe-inline')
+    script-src 'self' 'unsafe-inline' https:;
+    
+    img-src 'self' data: https:;
+">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F1 Comms Overlay</title>
+  <script>
+    // Obtiene la ruta de destino (ej: /frontend-F1Comms/overlay)
+    var path = window.location.pathname;
+
+    // Define la ruta base del repositorio. Debe coincidir con tu basename de React Router.
+    var base_path = '/frontend-F1Comms/';
+
+    // Redirige al index.html, pero conserva la ruta en el hash
+    window.location.replace(base_path + '#' + path.substring(base_path.length));
+  </script>
+  <script type="module" crossorigin src="/frontend-F1Comms/assets/index-DAP7xKOQ.js"></script>
+  <link rel="stylesheet" crossorigin href="/frontend-F1Comms/assets/index-BHAeH3jD.css">
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
 </html>
