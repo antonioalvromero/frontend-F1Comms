@@ -31,12 +31,12 @@ const OverlayPlayer: React.FC = () => {
     }
     
     try {
-      setStatus('loading');
       const response = await fetch(`${API_BASE_URL}/comms/next`);
       const data: CommMessage = await response.json();
 
       if (data.available && data.audio_url && audioRef.current) {
         // Encontramos un mensaje en la cola, ¡a reproducir!
+        setStatus('loading');
         setCurrentUsername(data.username || 'Equipo');
         setCurrentTranscript(data.transcript || 'Mensaje de Radio COMM');
         audioRef.current.src = `${API_BASE_URL}${data.audio_url}`;
@@ -52,14 +52,12 @@ const OverlayPlayer: React.FC = () => {
             setStatus('idle');
           });
           
-      } else {
-        // Cola vacía
-        setStatus('idle');
       }
+      // Si no hay audio disponible, simplemente no hacemos nada y dejamos el status en 'idle'
 
     } catch (error) {
       console.error("Error al hacer polling:", error);
-      setStatus('idle'); // Vuelve a intentar en el siguiente ciclo
+      // Solo volver a idle si no estamos reproduciendo
     }
   }, [status]); // Depende del status
 

@@ -30,14 +30,16 @@ function App() {
     // Añadirás aquí el transcript para /tts
 
     try {
-      const formData = new FormData();
-      formData.append('username', username);
-      formData.append('text', message); // El 'text' es ahora también el transcript
-      formData.append('transcript', message); // Enviamos el transcript explícitamente
+      const params = new URLSearchParams();
+      params.append('username', username);
+      params.append('text', message); // El 'text' es ahora también el transcript
 
-      const response = await fetch(`${API_BASE_URL}/tts`, {
+      const response = await fetch(`${API_BASE_URL}/tts/`, {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: params,
       });
 
       if (!response.ok) {
