@@ -12,6 +12,16 @@
     ">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>F1 Comms Overlay</title>
+    <script>
+        // Obtiene la ruta de destino (ej: /frontend-F1Comms/overlay)
+        var path = window.location.pathname;
+        
+        // Define la ruta base del repositorio. Debe coincidir con tu basename de React Router.
+        var base_path = '/frontend-F1Comms/'; 
+        
+        // Redirige al index.html, pero conserva la ruta en el hash
+        window.location.replace(base_path + '#' + path.substring(base_path.length));
+    </script>
   </head>
   <body>
     <div id="root"></div>
