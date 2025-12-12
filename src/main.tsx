@@ -10,7 +10,7 @@ import StreamerDashboard from './StreamerDashboard.tsx'; //Componente del dashbo
 
 // CLAVE: Define el nombre del repositorio. 
 // Reemplaza 'frontend-F1Comms' si el nombre real de tu repositorio es diferente.
-const REPO_NAME = "frontend-F1Comms"; 
+
 
 // Definición de las rutas
 const router = createBrowserRouter([
