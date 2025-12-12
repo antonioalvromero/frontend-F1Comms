@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
-const API_BASE_URL = 'http://132.226.48.36:8000';
+const API_BASE_URL = 'https://f1-proxy-server.onrender.com';
 
 const MAX_RECORDING_TIME_MS = 10000; // 10 segundos en milisegundos
 const MAX_RECORDING_TIME_S = MAX_RECORDING_TIME_MS / 1000; // 10 segundos en segundos

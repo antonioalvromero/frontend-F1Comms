@@ -5,7 +5,7 @@ import './OverlayPlayer.css';
 import F1CommBox from './F1CommBox';
 // Ya NO usamos useParams
 
-const API_BASE_URL = 'http://132.226.48.36:8000';
+const API_BASE_URL = 'https://f1-proxy-server.onrender.com';
 const POLLING_INTERVAL = 3000; // Consultar el backend cada 3 segundos
 
 
