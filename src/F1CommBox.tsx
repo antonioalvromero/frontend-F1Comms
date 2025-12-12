@@ -35,7 +35,7 @@ interface F1CommBoxProps {
     logoUrl?: string; 
 }
 
-const F1CommBox: FC<F1CommBoxProps> = ({ status, username, transcript, logoUrl = '/logo.png' }) => {
+const F1CommBox: FC<F1CommBoxProps> = ({ status, username, transcript, logoUrl = import.meta.env.BASE_URL + 'logo.png' }) => {
 
     const [isAnimatingOut, setIsAnimatingOut] = useState(false);
     // 2. ESTADO PARA ALMACENAR Y CAMBIAR EL COLOR
