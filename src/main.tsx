@@ -28,7 +28,7 @@ const router = createBrowserRouter([
   },
 ], {
     // CLAVE: AÑADE ESTO para que React Router sepa que la base es el subdirectorio del repositorio
-    basename: `/${REPO_NAME}`, 
+    basename: `/frontend-F1Comms`, 
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
