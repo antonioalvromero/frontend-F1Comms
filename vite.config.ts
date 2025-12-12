@@ -5,5 +5,5 @@ const REPO_NAME = 'frontend-F1Comms';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: `/${REPO_NAME}/`,
+  base: `/frontend-F1Comms/`,
 })
